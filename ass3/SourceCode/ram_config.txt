@@ -1,0 +1,32 @@
+# Stratix-IV-like architecture
+# 50% of logic blocks can implement LUTRAM, 64 10-bit wide or 32 20-bit 
+# LUTRAM can not implement TrueDualPort
+# every 10 logic blocks, one 8192-bit RAM block, from 8192 1-bit words to 256 32-bit words (to 512 16-bit word for true dual port)
+# every 300 logic blocks, one 128kbit RAM block, from 128k 1-bit words to 1024 128-bit words (to 2048 64-bit word for true dual port)
+# availability defines as the number of logic blocks required for one resource available
+# Mode: 0 -> ROM, 1 -> SinglePort, 2 -> SimpleDualPort, 3 -> TrueDualPort
+# width should formatted in an increaseing order
+
+[LUTRAM]
+type: LUTRAM
+bit_size: 640
+availability: 2
+mode: 0, 1, 2
+width: 10, 20
+#depth: 64, 32
+
+[8kBRAM]
+type: BRAM
+bit_size: 8192
+availability: 10 
+mode: 0, 1, 2, 3
+width: 1, 2, 4, 8, 16, 32
+#depth: 8192, 4096, 2048, 1024, 512, 256
+
+[128kBRAM]
+type: BRAM
+bit_size: 131072
+availability: 300
+mode: 0, 1, 2, 3
+width: 1, 2, 4, 8, 16, 32, 64, 128
+#depth: 131072, 65536, 32768, 16384, 8192, 4096, 2048, 1024
